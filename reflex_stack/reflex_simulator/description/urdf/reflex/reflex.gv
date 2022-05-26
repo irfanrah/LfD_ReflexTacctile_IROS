@@ -1,0 +1,59 @@
+digraph G {
+node [shape=box];
+"shell" [label="shell"];
+"swivel_1" [label="swivel_1"];
+"proximal_1" [label="proximal_1"];
+"finger_1_flex_link" [label="finger_1_flex_link"];
+"distal_1" [label="distal_1"];
+"distal_1_pad" [label="distal_1_pad"];
+"proximal_1_pad" [label="proximal_1_pad"];
+"swivel_2" [label="swivel_2"];
+"proximal_2" [label="proximal_2"];
+"finger_2_flex_link" [label="finger_2_flex_link"];
+"distal_2" [label="distal_2"];
+"distal_2_pad" [label="distal_2_pad"];
+"proximal_2_pad" [label="proximal_2_pad"];
+"proximal_3" [label="proximal_3"];
+"finger_3_flex_link" [label="finger_3_flex_link"];
+"distal_3" [label="distal_3"];
+"distal_3_pad" [label="distal_3_pad"];
+"proximal_3_pad" [label="proximal_3_pad"];
+"pad" [label="pad"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"shell" -> "preshape_1" [label="xyz: 0.0503974 -0.026 0.063 \nrpy: 0 -0 0"]
+"preshape_1" -> "swivel_1"
+"swivel_1" -> "proximal_joint_1" [label="xyz: 0.01 0 0.0186 \nrpy: 0 0.28 0"]
+"proximal_joint_1" -> "proximal_1"
+"proximal_1" -> "proximal_1_to_flex" [label="xyz: 0.062 0 -0.002 \nrpy: 0 -0 0"]
+"proximal_1_to_flex" -> "finger_1_flex_link"
+"finger_1_flex_link" -> "flex_to_distal_1" [label="xyz: 0.017 0 0 \nrpy: 0 -0 0"]
+"flex_to_distal_1" -> "distal_1"
+"distal_1" -> "distal_1_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"distal_1_to_pad" -> "distal_1_pad"
+"proximal_1" -> "proximal_1_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"proximal_1_to_pad" -> "proximal_1_pad"
+"shell" -> "preshape_2" [label="xyz: 0.0503974 0.026 0.063 \nrpy: 0 -0 0"]
+"preshape_2" -> "swivel_2"
+"swivel_2" -> "proximal_joint_2" [label="xyz: 0.01 0 0.0186 \nrpy: 0 0.28 0"]
+"proximal_joint_2" -> "proximal_2"
+"proximal_2" -> "proximal_2_to_flex" [label="xyz: 0.062 0 -0.002 \nrpy: 0 -0 0"]
+"proximal_2_to_flex" -> "finger_2_flex_link"
+"finger_2_flex_link" -> "flex_to_distal_2" [label="xyz: 0.017 0 0 \nrpy: 0 -0 0"]
+"flex_to_distal_2" -> "distal_2"
+"distal_2" -> "distal_2_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"distal_2_to_pad" -> "distal_2_pad"
+"proximal_2" -> "proximal_2_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"proximal_2_to_pad" -> "proximal_2_pad"
+"shell" -> "proximal_joint_3" [label="xyz: -0.03 0 0.0816 \nrpy: 0 0.28 -3.14159"]
+"proximal_joint_3" -> "proximal_3"
+"proximal_3" -> "proximal_3_to_flex" [label="xyz: 0.062 0 -0.002 \nrpy: 0 -0 0"]
+"proximal_3_to_flex" -> "finger_3_flex_link"
+"finger_3_flex_link" -> "flex_to_distal_3" [label="xyz: 0.017 0 0 \nrpy: 0 -0 0"]
+"flex_to_distal_3" -> "distal_3"
+"distal_3" -> "distal_3_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"distal_3_to_pad" -> "distal_3_pad"
+"proximal_3" -> "proximal_3_to_pad" [label="xyz: 0 0 0 \nrpy: 1.5708 -0 -1.5708"]
+"proximal_3_to_pad" -> "proximal_3_pad"
+"shell" -> "shell_to_pad" [label="xyz: 0.02 0 0.063 \nrpy: 1.5708 -0 -1.5708"]
+"shell_to_pad" -> "pad"
+}

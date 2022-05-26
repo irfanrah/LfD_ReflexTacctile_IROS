@@ -1,0 +1,33 @@
+gazebo:
+  # publish joint states
+  wrist_joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 500
+
+  # translation
+  px_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: px_joint
+    pid: {p: 4000, i: 0.0, d: 150}
+  py_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: py_joint
+    pid: {p: 4000, i: 0.0, d: 150}
+  pz_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: pz_joint
+    pid: {p: 10000, i: 0.0, d: 400}
+
+  # rotation
+  ry_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: ry_joint
+    pid: {p: 2000, i: 0.0, d: 5}
+  rp_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rp_joint
+    pid: {p: 2000, i: 0.0, d: 5}
+  rr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: rr_joint
+    pid: {p: 2000, i: 0.0, d: 5}
