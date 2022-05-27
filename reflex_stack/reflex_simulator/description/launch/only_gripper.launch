@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="spawn_new_world" default="true" />
+    <arg name="base_link_name" default="shell" />
+    <arg name="output" default="screen" />
+
+    <arg name="reflex_pub_rate" default="40" />
+    <param name="reflex_pub_rate" value="$(arg reflex_pub_rate)" />
+
+    <arg name="simplify_collisions" default="true" />
+    <param name="simplify_collisions" value="$(arg simplify_collisions)" />
+
+    <arg name="robot_name" default="reflex" />
+    <param name="robot_name" value="$(arg robot_name)" />
+
+
+    <arg name="debug" default="false" />
+    <arg name="gui" default="true" />
+    <arg name="pause" default="false" />
+
+    <!-- include gazebo_ros launcher -->
+    <include file="$(find description)/launch/gazebo_world.launch" if="$(arg spawn_new_world)">
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="pause" value="$(arg pause)"/>
+    </include>
+
+
+
+    <param name="robot_description" command="
+        $(find xacro)/xacro '$(find description)/robots/reflex.robot.xacro' only_reflex:=true base_link_name:=$(arg base_link_name) reflex_pub_rate:=$(arg reflex_pub_rate) simplify_collisions:=$(arg simplify_collisions)"/>
+
+
+    <arg name="reflex_spawn_delay" default="4" />
+    <arg name="nodes_spawn_delay" default="5" />
+
+    <node name="reflex_spawn" pkg="gazebo_ros" type="spawn_model" output="$(arg output)" args="-urdf -param robot_description -model $(arg robot_name)" launch-prefix="bash -c 'sleep $(arg reflex_spawn_delay); $0 $@' " />
+
+
+</launch>

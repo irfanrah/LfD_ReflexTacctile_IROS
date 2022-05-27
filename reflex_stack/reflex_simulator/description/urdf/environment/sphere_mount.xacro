@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sphere_mount">
+
+    <xacro:arg name="box_mass" default="1"/>
+    <xacro:property name="mount_z_offset" value="-0.022"/>
+
+    <!-- parametrization of sphere mount -->
+    <xacro:property name="box_x" value="0.15"/>
+    <xacro:property name="box_y" value="${2*box_x}"/>
+    <xacro:property name="box_z" value="0.01"/>
+    <xacro:property name="rotation_y" value="${-5*pi/180}"/>
+    <xacro:property name="sqrt_2" value="1.414"/>
+
+    <xacro:include filename="$(find description)/urdf/xacro_macros/inertia_tensors.xacro"/>
+
+    <link name="world"/>
+
+    <xacro:macro name="sphere_mount_link" params="id origin_x origin_y rotation_z">
+
+        <joint name="sphere_mount_joint_${id}" type="fixed">
+            <origin xyz="0 0 ${mount_z_offset}" rpy="0 0 ${pi/4}"/>
+            <parent link="world"/>
+            <child link="sphere_mount_${id}"/>
+        </joint>
+        <link name="sphere_mount_${id}">
+            <visual>
+                <origin xyz="${origin_x} ${origin_y} ${box_z}" rpy="0 ${rotation_y} ${rotation_z}" />
+                <geometry>
+                    <box size="${box_x} ${box_y} ${box_z}" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="${origin_x} ${origin_y} ${box_z}" rpy="0 ${rotation_y} ${rotation_z}" />
+                <geometry>
+                    <box size="${box_x} ${box_y} ${box_z}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="${origin_x} ${origin_y} ${box_z}" rpy="0 ${rotation_y} ${rotation_z}" />
+                <mass value="$(arg box_mass)"/>
+                <xacro:cuboid_inertia m="$(arg box_mass)" x="${box_x}" y="${box_y}" z="${box_z}"/>
+            </inertial>
+        </link>
+
+        <gazebo reference="sphere_mount_${id}">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:sphere_mount_link id="1" origin_x="${box_x/2}" origin_y="${0}" rotation_z="${0}"/>
+    <xacro:sphere_mount_link id="2" origin_x="${0}" origin_y="${box_y/4}" rotation_z="${pi/2}"/>
+    <xacro:sphere_mount_link id="3" origin_x="${-box_x/2}" origin_y="${0}" rotation_z="${pi}"/>
+    <xacro:sphere_mount_link id="4" origin_x="${0}" origin_y="${-box_y/4}" rotation_z="${3*pi/2}"/>
+
+</robot>

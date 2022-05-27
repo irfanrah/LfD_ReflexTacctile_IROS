@@ -1,0 +1,41 @@
+<robot name="lettuce">
+	<link name="mylettuce">
+		<inertial>
+			<origin xyz="0 0 0.03" />
+			<mass value="0.5" />
+			<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh scale="0.1 0.1 0.1" filename="/home/jungeun/catkin_ws/src/reflex_stack/reflex_simulator/description/meshes/lettuce/lettuce.stl" />
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh scale="0.08 0.08 0.08" filename="/home/jungeun/catkin_ws/src/reflex_stack/reflex_simulator/description/meshes/lettuce/lettuce.stl" />
+			</geometry>
+			<surface>
+				<friction>
+					<torsional>
+						<coefficient>100000</coefficient>
+					</torsional>
+				</friction>
+				<soft_contact>
+					<dart>
+						<flesh_mass_fraction>1</flesh_mass_fraction>
+					</dart>
+				</soft_contact>
+				<ode>
+					<mu>100000</mu>
+					<mu2>100000</mu2>
+				</ode>
+			</surface>
+		</collision>
+	</link>
+	<gazebo reference="mylettuce">
+		<material>Gazebo/Green</material>
+	</gazebo>
+
+</robot>

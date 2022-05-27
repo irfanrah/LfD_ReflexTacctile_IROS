@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- name of base link of your robotic hand -->
+    <xacro:arg name="base_link_name" default="base_link"/>
+    
+    <!-- translation properties -->
+    <xacro:property name="translation_effort" value="1000"/>
+    <xacro:property name="translation_velocity" value="0.05"/>
+    <xacro:property name="translation_up_lim" value="5"/>
+    <xacro:property name="translation_low_lim" value="-5"/>
+    <xacro:property name="translation_low_lim_z" value="-1"/>
+    <xacro:property name="translation_damping" value="60"/>
+    <xacro:property name="translation_friction" value="0"/>
+
+    <!-- rotation properties -->
+    <xacro:property name="rotation_effort" value="1000"/>
+    <xacro:property name="rotation_velocity" value="0.01"/>
+    <xacro:property name="rotation_damping" value="60"/>
+    <xacro:property name="rotation_friction" value="0"/>
+
+    <!-- link properties -->
+    <xacro:property name="mass" value="1"/>
+    <xacro:property name="ixx" value="0.01"/>
+    <xacro:property name="ixy" value="0"/>
+    <xacro:property name="ixz" value="0"/>
+    <xacro:property name="iyy" value="0.01"/>
+    <xacro:property name="iyz" value="0"/>
+    <xacro:property name="izz" value="0.01"/>
+
+    <!-- links and joints for translation -->
+    <link name="world"/>
+    <joint name="px_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <parent link="world"/>
+        <child link="px_link"/>
+        <limit effort="${translation_effort}" lower="${translation_low_lim}" upper="${translation_up_lim}" velocity="${translation_velocity}"/>
+        <dynamics damping="${translation_damping}" friction="${translation_friction}"/>
+    </joint>
+    <link name="px_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </inertial>
+    </link>
+    <joint name="py_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <parent link="px_link"/>
+        <child link="py_link"/>
+        <limit effort="${translation_effort}" lower="${translation_low_lim}" upper="${translation_up_lim}" velocity="${translation_velocity}"/>
+        <dynamics damping="${translation_damping}" friction="${translation_friction}"/>
+    </joint>
+    <link name="py_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </inertial>
+    </link>
+    <joint name="pz_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <parent link="py_link"/>
+        <child link="pz_link"/>
+        <limit effort="${translation_effort}" lower="${translation_low_lim_z}" upper="${translation_up_lim}" velocity="${translation_velocity}"/>
+        <dynamics damping="${translation_damping}" friction="${translation_friction}"/>
+    </joint>
+    <link name="pz_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </inertial>
+    </link>
+
+    <!-- links and joints for rotation -->
+    <joint name="ry_joint" type="continuous">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <parent link="pz_link"/>
+        <child link="ry_link"/>
+        <limit effort="${rotation_effort}" velocity="${rotation_velocity}"/>
+        <dynamics damping="${rotation_damping}" friction="${rotation_friction}"/>
+    </joint>
+    <link name="ry_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </inertial>
+    </link>
+    <joint name="rp_joint" type="continuous">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <parent link="ry_link"/>
+        <child link="rp_link"/>
+        <limit effort="${rotation_effort}" velocity="${rotation_velocity}"/>
+        <dynamics damping="${rotation_damping}" friction="${rotation_friction}"/>
+    </joint>
+    <link name="rp_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </inertial>
+    </link>
+
+    <joint name="rr_joint" type="continuous">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <parent link="rp_link"/>
+        <child link="$(arg base_link_name)"/>
+        <limit effort="${rotation_effort}" velocity="${rotation_velocity}"/>
+        <dynamics damping="${rotation_damping}" friction="${rotation_friction}"/>
+    </joint>
+
+    <!-- transmissions -->
+    <xacro:include filename="$(find wrist_controller)/urdf/wrist.transmissions.xacro"/>
+    <xacro:include filename="$(find wrist_controller)/urdf/wrist.gazebo.xacro"/>
+
+</robot>
