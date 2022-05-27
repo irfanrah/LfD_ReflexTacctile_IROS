@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from gazebo_msgs.srv import SpawnModel, DeleteModel, SetModelState, GetWorldProperties, GetModelState, ApplyBodyWrench
+from gazebo_msgs.srv import SpawnModel, DeleteModel, SetModelState, GetWorldProperties, GetModelState, ApplyBodyWrench, SetLinkProperties, GetLinkProperties
 from genpy import Duration
 import rospy
 import time
@@ -39,13 +39,13 @@ def spawn_random(useRandomLocation = True):
     initial_pose=obj_pose,
     reference_frame='ground_plane')
 
-
-    time.sleep(1)
+    
+    time.sleep(0.3)
     ## Apply some force to stabilize
     my_wrech = Wrench()
     my_wrech.force.x = 0
     my_wrech.force.y = 0
-    my_wrech.force.z = 3
+    my_wrech.force.z = -1
     my_wrech.torque.x = 0
     my_wrech.torque.y = 0
     my_wrech.torque.z = 0

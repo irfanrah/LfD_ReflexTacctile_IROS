@@ -58,6 +58,7 @@ def save_demonstration():
 	remove_spawn()
 	depth_image_reference_path = save_and_convert_img_to_state(depth_image, "references")
 	spawn_random()
+	time.sleep(0.5)
 	depth_image_with_obj_path = save_and_convert_img_to_state(depth_image, "with-object")
 	state_vector = generate_state_vector(depth_image_with_obj_path,depth_image_reference_path,50,invert=False,show_img=False,)
 	print(f"created {path}")
@@ -78,6 +79,7 @@ def save_action():
 	with open(path + '/state-action.txt', 'w') as f:
 		f.write(json.dumps(state_action))
 	print(f"saved to {path}")
+	saveDemonstration['state'] = NORMAL
  
 def reset_state():
 	saveDemonstration['state'] = NORMAL
