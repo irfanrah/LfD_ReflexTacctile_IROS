@@ -62,7 +62,7 @@ def spawn_random(useRandomLocation = True, useSpawnTable = False, useConverter =
             obj_pose.position.y = np.random.uniform(0.1, 0.8)
             
     if useConverter:
-        obj_pose.orientation.x, obj_pose.orientation.y, obj_pose.orientation.z, obj_pose.orientation.w = get_quaternion_from_euler(1.52 , 0 , np.random.uniform(0, 4) -2)
+        obj_pose.orientation.x, obj_pose.orientation.y, obj_pose.orientation.z, obj_pose.orientation.w = get_quaternion_from_euler(1.52 , 0 , np.random.uniform(0, 4) -2 )
         
     spawn_model_client = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
     spawn_model_client(
