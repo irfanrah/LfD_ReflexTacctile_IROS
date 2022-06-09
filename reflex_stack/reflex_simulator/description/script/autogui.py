@@ -90,7 +90,7 @@ def predict_actions(regressors, state_vectors):
 	return output
 
 def load_model():
-	model_path = "/home/jungeun/catkin_ws/src/reflex_stack/reflex_simulator/description/script/model/new_demo_weights.model"
+	model_path = "/home/jungeun/catkin_ws/src/reflex_stack/reflex_simulator/description/script/model/100_demo_weights_all_demos.model"
 	loaded_model = pickle.load(open(model_path, 'rb'))
 	return loaded_model
 
