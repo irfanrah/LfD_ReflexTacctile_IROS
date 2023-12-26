@@ -1,8 +1,18 @@
 # LfD Reflex Tactile Project
 
 ## Overview
+This repository is a reproduction of the algorithm described in the paper "Robotic handling of compliant food objects by robust learning from demonstration" by Misimi, E., Olofsson, A., Eilertsen, A., Øye, E. R., & Mathiassen, J. R. (2018). We aim to simulate this algorithm in the Gazebo environment and provide resources and examples for the Learning from Demonstration (LfD) Reflex Tactile project.
 
-This repository contains resources and examples for the LfD (Learning from Demonstration) Reflex Tactile project. It includes demonstrations, results, and instructions for running various components of the project.
+## Paper Reference
+For detailed information about the original research and methodologies, refer to the paper:
+[Misimi, E., Olofsson, A., Eilertsen, A., Øye, E. R., & Mathiassen, J. R. (2018, October). Robotic handling of compliant food objects by robust learning from demonstration. In 2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) (pp. 6972-6979). IEEE.](https://ieeexplore.ieee.org/abstract/document/8594368)
+
+## Contents
+The repository includes:
+- Demonstrations of the algorithm in action.
+- Results from various test scenarios.
+- Instructions for setting up and running different components of the project.
+
 
 ## Running the Project Components
 
