@@ -4,6 +4,17 @@
 
 This repository contains resources and examples for the LfD (Learning from Demonstration) Reflex Tactile project. It includes demonstrations, results, and instructions for running various components of the project.
 
+## Running the Project Components
+
+### Gazebo Grasping Environment
+Follow these instructions to run the Gazebo grasping environment component of the project:  
+[Gazebo Grasping Environment](https://github.com/irfanrah/LfD_ReflexTacctile/tree/master/reflex_stack)
+
+### Inconsistent Rejection Module
+Details on how to execute the Inconsistent Rejection module are provided here:  
+[Inconsistent Rejection](https://github.com/irfanrah/LfD_ReflexTacctile/tree/master/svm-policy)
+
+
 ## Demonstrations and Results
 
 ### Demonstration Example
@@ -26,15 +37,7 @@ To get a quick overview of what the project entails, check out the demonstration
   For a concise summary of the project's results:  
   [Result Summary](https://github.com/irfanrah/LfD_ReflexTacctile/blob/master/additional_resource/(Kurnianto)%20Autonomous%20Grasp%20V3.pdf)
 
-## Running the Project Components
 
-### Gazebo Grasping Environment
-Follow these instructions to run the Gazebo grasping environment component of the project:  
-[Gazebo Grasping Environment](https://github.com/irfanrah/LfD_ReflexTacctile/tree/master/reflex_stack)
-
-### Inconsistent Rejection Module
-Details on how to execute the Inconsistent Rejection module are provided here:  
-[Inconsistent Rejection](https://github.com/irfanrah/LfD_ReflexTacctile/tree/master/svm-policy)
 
 ## More Information
 
